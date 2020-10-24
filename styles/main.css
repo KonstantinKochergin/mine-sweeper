@@ -1,0 +1,116 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-container {
+    display: inline-block;
+}
+
+.game-panel-head {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.bombs-left {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    user-select: none;
+}
+
+.bombs-left .bombs-count {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+
+.play-again-button {
+    cursor: pointer;
+}
+
+.game-result {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    z-index: -1;
+}
+
+.victory {
+    color: #58c445;
+}
+
+.lose {
+    color: #ff0000;
+}
+
+.hide {
+    display: none;
+}
+
+.minefield {
+    display: grid;
+    grid-template-columns: repeat(12, 40px);
+    grid-template-rows: repeat(12, 40px);
+    gap: 8px 8px;
+    grid-template-areas:
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . ."
+      ". . . . . . . . . . . .";
+}
+
+.minefield .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #bbbbbb;
+    border: 1px solid #707070;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    color: #707070;
+}
+
+.minefield .cell:hover {
+    border: 4px solid #707070;
+}
+
+.minefield .active-cell {
+    border: 4px solid #707070;
+}
+
+.minefield .open {
+    background-color: #ffffff;
+}
+
+.minefield .open-bomb {
+    background-color: #c42828;
+}
