@@ -7,6 +7,8 @@ const bombsCount = 20
 
 const minefieldContainer = document.querySelector('.minefield')
 
+const flagsCountLabel = document.querySelector('.bombs-count')
+
 let cells = []
 
 minefieldContainer.addEventListener('contextmenu', event => {
@@ -27,6 +29,7 @@ function clearGame() {
     gameResultLabel.classList.remove('victory')
     cells = []
     minefieldContainer.innerHTML = ""
+    flagsCountLabel.innerHTML = `0/${bombsCount}`
 }
 
 function firstClickHandler(event) {

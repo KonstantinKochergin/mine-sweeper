@@ -21,3 +21,7 @@ document.addEventListener(UNMARK_CELL_EVENT_NAME, () => {
     bombsCountLabel.innerHTML = `${window.globalThis.markedBombsCount}/${bombsCount}`
 })
 
+export function clearBombsCountLabel() {
+    bombsCountLabel.innerHTML = `0/${bombsCount}`
+}
+
