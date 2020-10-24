@@ -1,7 +1,6 @@
 import app from './app.js'
 
 let isKeyboardMode = false  //true - управление клавиатурой; false - управление мышкой
-let prevCoors = {x: -1, y: -1}
 let currentCoors = {x: -1, y: -1}
 
 function startKeyboardMode() {
@@ -11,7 +10,9 @@ function startKeyboardMode() {
     app.minefieldContainer.classList.add('keyboard-mode')
 }
 
-function breakKeyboardMode() {
+export function breakKeyboardMode() {
+    if (!isKeyboardMode) return
+    console.log('break keyboard mode')
     isKeyboardMode = false
     setCellUnfocus(currentCoors)
     currentCoors = {x: -1, y: -1}
@@ -129,7 +130,19 @@ document.addEventListener('keyup', event => {
     }
     else if (event.code === 'Space') {
         if (isKeyboardMode) {
+            if (!window.globalThis.isBombsInitiated) {
+                app.firstClickHandler({target: app.cells[currentCoors.y][currentCoors.x].elem})     //костыль
+            }
             app.cells[currentCoors.y][currentCoors.x].onClick()
         }
     }
+    else if (event.code === 'Enter') {
+        if (isKeyboardMode) {
+            app.cells[currentCoors.y][currentCoors.x].onRightClick()
+        }
+    }
+    else if (event.code === 'KeyR') {
+        app.restartGame()
+    }
+    console.log(currentCoors)
 })

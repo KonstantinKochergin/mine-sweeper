@@ -119,18 +119,20 @@ class Cell {
 
     onRightClick(event) {
         if (window.globalThis.gameStatus !== 0) return
-        event.preventDefault()
+        event?.preventDefault()
         if (!this.isOpen) {
             this.toogleMarkCell()
         }
     }
 
     setFocus() {
+        console.log('elem set focus')
         this.isFocused = true
         this.elem.classList.add('active-cell')
     }
 
     dropFocus() {
+        console.log('elem drop focus')
         this.isFocused = false
         this.elem.classList.remove('active-cell')
     }

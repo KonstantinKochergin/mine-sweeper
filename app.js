@@ -1,5 +1,6 @@
 import Cell from './cell.js'
 import {DEFEAT_EVENT_NAME} from './cell.js'
+import {breakKeyboardMode} from './keyboardController.js'
 
 const fieldWidth = 12
 const fieldHeight = 12
@@ -16,6 +17,7 @@ minefieldContainer.addEventListener('contextmenu', event => {
 })
 
 function initGame() {
+    window.globalThis.isBombsInitiated = false
     window.globalThis.gameStatus = 0    //0 - игра идет; 1 игра окончена
     window.globalThis.closedCellsCount = fieldWidth * fieldHeight
     window.globalThis.markedBombsCount = 0
@@ -24,6 +26,7 @@ function initGame() {
 }
 
 function clearGame() {
+    breakKeyboardMode()
     gameResultLabel.classList.add('hide')
     gameResultLabel.classList.remove('lose')
     gameResultLabel.classList.remove('victory')
@@ -32,12 +35,18 @@ function clearGame() {
     flagsCountLabel.innerHTML = `0/${bombsCount}`
 }
 
+function restartGame() {
+    clearGame()
+    initGame()
+}
+
 function firstClickHandler(event) {
     if (event.target.classList.contains('cell')) {
         let x = +event.target.getAttribute('x')
         let y = +event.target.getAttribute('y')
         setBombs(fieldWidth, bombsCount, {x, y})
         minefieldContainer.removeEventListener('click', firstClickHandler, {capture: true})
+        window.globalThis.isBombsInitiated = true
     }
 }
 
@@ -121,8 +130,7 @@ initGame()
 let playAgainButton = document.querySelector('.play-again-button')
 playAgainButton.addEventListener('click', () => {
     clearGame()
-    initGame()
 })
 
-export default {bombsCount, checkVictory, cells, fieldWidth, fieldHeight, minefieldContainer}
+export default {bombsCount, checkVictory, cells, fieldWidth, fieldHeight, minefieldContainer, firstClickHandler, restartGame}
 
