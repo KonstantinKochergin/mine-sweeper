@@ -21,6 +21,7 @@ class Cell {
         elem.setAttribute('y', y)
         elem.addEventListener('click', this.onClick.bind(this))
         elem.addEventListener('contextmenu', this.onRightClick.bind(this))
+        this.isFocused = false
     }
 
     _checkBombsNear() {
@@ -122,6 +123,16 @@ class Cell {
         if (!this.isOpen) {
             this.toogleMarkCell()
         }
+    }
+
+    setFocus() {
+        this.isFocused = true
+        this.elem.classList.add('active-cell')
+    }
+
+    dropFocus() {
+        this.isFocused = false
+        this.elem.classList.remove('active-cell')
     }
 }
 

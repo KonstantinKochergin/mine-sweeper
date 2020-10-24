@@ -124,5 +124,5 @@ playAgainButton.addEventListener('click', () => {
     initGame()
 })
 
-export default {bombsCount, checkVictory}
+export default {bombsCount, checkVictory, cells, fieldWidth, fieldHeight, minefieldContainer}
 
