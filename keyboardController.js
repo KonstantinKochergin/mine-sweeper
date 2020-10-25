@@ -12,7 +12,6 @@ function startKeyboardMode() {
 
 export function breakKeyboardMode() {
     if (!isKeyboardMode) return
-    console.log('break keyboard mode')
     isKeyboardMode = false
     setCellUnfocus(currentCoors)
     currentCoors = {x: -1, y: -1}
@@ -20,11 +19,11 @@ export function breakKeyboardMode() {
 }
 
 function setCellFocus(coors) {
-    app.cells[coors.y][coors.x].setFocus()
+    window.globalThis.cells[coors.y][coors.x].setFocus()
 }
 
 function setCellUnfocus(coors) {
-    app.cells[coors.y][coors.x].dropFocus()
+    window.globalThis.cells[coors.y][coors.x].dropFocus()
 }
 
 function moveFocusRight() {
@@ -93,7 +92,7 @@ function changeValueInInterval(value, min, max, delta) {
 function findFirstAvailableCellCoors() {
     for (let i = 0; i < app.fieldHeight; i++) {
         for (let j = 0; j < app.fieldWidth; j++) {
-            if (!app.cells[i][j].isOpen) {
+            if (!window.globalThis.cells[i][j].isOpen) {
                 return {x: j, y: i}
             }
         }
@@ -131,18 +130,21 @@ document.addEventListener('keyup', event => {
     else if (event.code === 'Space') {
         if (isKeyboardMode) {
             if (!window.globalThis.isBombsInitiated) {
-                app.firstClickHandler({target: app.cells[currentCoors.y][currentCoors.x].elem})     //костыль
+                app.firstClickHandler({target: window.globalThis.cells[currentCoors.y][currentCoors.x].elem})     //костыль
             }
-            app.cells[currentCoors.y][currentCoors.x].onClick()
+            window.globalThis.cells[currentCoors.y][currentCoors.x].onClick()
         }
     }
     else if (event.code === 'Enter') {
         if (isKeyboardMode) {
-            app.cells[currentCoors.y][currentCoors.x].onRightClick()
+            window.globalThis.cells[currentCoors.y][currentCoors.x].onRightClick()
         }
     }
     else if (event.code === 'KeyR') {
         app.restartGame()
     }
-    console.log(currentCoors)
+})
+
+document.addEventListener('click', () => {
+    breakKeyboardMode()
 })

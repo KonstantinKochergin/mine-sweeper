@@ -126,13 +126,11 @@ class Cell {
     }
 
     setFocus() {
-        console.log('elem set focus')
         this.isFocused = true
         this.elem.classList.add('active-cell')
     }
 
     dropFocus() {
-        console.log('elem drop focus')
         this.isFocused = false
         this.elem.classList.remove('active-cell')
     }

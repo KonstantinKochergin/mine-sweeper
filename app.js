@@ -10,7 +10,7 @@ const minefieldContainer = document.querySelector('.minefield')
 
 const flagsCountLabel = document.querySelector('.bombs-count')
 
-let cells = []
+window.globalThis.cells = []
 
 minefieldContainer.addEventListener('contextmenu', event => {
     event.preventDefault()
@@ -30,7 +30,7 @@ function clearGame() {
     gameResultLabel.classList.add('hide')
     gameResultLabel.classList.remove('lose')
     gameResultLabel.classList.remove('victory')
-    cells = []
+    window.globalThis.cells = []
     minefieldContainer.innerHTML = ""
     flagsCountLabel.innerHTML = `0/${bombsCount}`
 }
@@ -52,12 +52,12 @@ function firstClickHandler(event) {
 
 function generateField(fieldWidth, fieldHeight) {
     for (let i = 0; i < fieldWidth; i++) {
-        cells[i] = []
+        window.globalThis.cells[i] = []
         for (let j = 0; j < fieldHeight; j++) {
             let cell = document.createElement('div')
             cell.classList.add('cell')
             minefieldContainer.append(cell)
-            cells[i].push(new Cell(cell, j, i, false, cells))
+            window.globalThis.cells[i].push(new Cell(cell, j, i, false, window.globalThis.cells))
         }
     }
 }
@@ -80,9 +80,9 @@ function setBombs(fieldWidth, bombsCount, initPoint = {x: -1, y: -1}) {
     settedBombsHashes.forEach(hash => {
         let x = hash % fieldWidth
         let y = (hash - x) / fieldWidth
-        cells[y][x].hasBomb = true
+        window.globalThis.cells[y][x].hasBomb = true
     })
-    cells.forEach(cellsRow => {
+    window.globalThis.cells.forEach(cellsRow => {
         cellsRow.forEach(cell => {
             cell.setBombsNearCount()
         })
@@ -97,7 +97,7 @@ function showDefeat() {
     gameResultLabel.innerHTML = DEFEAT_TEXT
     gameResultLabel.classList.remove('hide')
     gameResultLabel.classList.add('lose')
-    cells.forEach(cellsRow => {
+    window.globalThis.cells.forEach(cellsRow => {
         cellsRow.forEach(cell => {
             if (cell.hasBomb) {
                 cell.showBomb()
@@ -124,13 +124,12 @@ function showVictory() {
     window.globalThis.gameStatus = 1
 }
 
-
 initGame()
 
 let playAgainButton = document.querySelector('.play-again-button')
 playAgainButton.addEventListener('click', () => {
-    clearGame()
+    restartGame()
 })
 
-export default {bombsCount, checkVictory, cells, fieldWidth, fieldHeight, minefieldContainer, firstClickHandler, restartGame}
+export default {bombsCount, checkVictory, fieldWidth, fieldHeight, minefieldContainer, firstClickHandler, restartGame}
 
