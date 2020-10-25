@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>minesweeper</title>
     <link rel="stylesheet" type="text/css" href="./styles/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="app.js" type="module"></script>
     <script src="cell.js" type="module"></script>
     <script src="markedBombsCounter.js" type="module"></script>
@@ -13,16 +13,50 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="game-panel-head">
-            <div class="bombs-left">
-                <img src="./media/flag.svg" alt="Флагов">
-                <div class="bombs-count">40</div>
+        <div class="game-panel-container">
+            <div class="game-panel-head">
+                <div class="bombs-left">
+                    <img src="./media/flag.svg" alt="Флагов">
+                    <div class="bombs-count">40</div>
+                </div>
+                <div class="game-result hide">Неудача</div>
+                <img src="./media/restart.svg" alt="Начать сначала" class="play-again-button">
             </div>
-            <div class="game-result hide">Неудача</div>
-            <img src="./media/restart.svg" alt="Начать сначала" class="play-again-button">
+            <div class="minefield"></div>
         </div>
-        <div class="minefield">
-    
+        <div class="keyboard-instruction">
+            <div class="instructions-container">
+                <div class="row">
+                    <div class="icon-container">
+                        <img src="./media/arrows.svg" alt="Arrows" class="icon">
+                    </div>
+                    <div class="info">Перемещение</div>
+                </div>
+                <div class="row">
+                    <div class="icon-container">
+                        <img src="./media/space-button.svg" alt="Space" class="icon">
+                    </div>
+                    <div class="info">Открыть клетку</div>
+                </div>
+                <div class="row">
+                    <div class="icon-container">
+                        <img src="./media/enter-button.svg" alt="Enter" class="icon">
+                    </div>
+                    <div class="info">Поставить флаг</div>
+                </div>
+                <div class="row">
+                    <div class="icon-container">
+                        <img src="./media/r-button.svg" alt="R" class="icon">
+                    </div>
+                    <div class="info">Начать заново</div>
+                </div>
+                <div class="row">
+                    <div class="icon-container">
+                        <img src="./media/esc-button.svg" alt="Esc" class="icon">
+                    </div>
+                    <div class="info">Выйти из режима клавиатуры</div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

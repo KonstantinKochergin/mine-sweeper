@@ -10,7 +10,9 @@ body {
 }
 
 .main-container {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .game-panel-head {
@@ -65,6 +67,25 @@ body {
 
 .hide {
     display: none;
+}
+
+.keyboard-instruction {
+    margin-left: 50px;
+}
+
+.instructions-container .row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.instructions-container .row .info {
+    font-weight: 500;
+}
+
+.instructions-container .icon-container {
+    width: 190px;
 }
 
 .minefield {
