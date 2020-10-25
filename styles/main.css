@@ -120,6 +120,11 @@ body {
     color: #707070;
 }
 
+.minefield .cell img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .minefield .cell:hover {
     border: 4px solid #707070;
 }
@@ -138,4 +143,25 @@ body {
 
 .minefield .open-bomb {
     background-color: #c42828;
+}
+
+@media only screen and (max-width: 1040px) {
+    .keyboard-instruction {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .minefield {
+        grid-template-columns: repeat(12, 30px);
+        grid-template-rows: repeat(12, 30px);
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .minefield {
+        grid-template-columns: repeat(12, 20px);
+        grid-template-rows: repeat(12, 20px);
+        gap: 4px 4px;
+    }
 }
